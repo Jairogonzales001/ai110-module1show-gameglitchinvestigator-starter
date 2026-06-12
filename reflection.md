@@ -7,16 +7,23 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - What did the game look like the first time you ran it?
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
+  1. If the number I enter is lower than the answer hint says Go Lower even if the answer is higher than my guess.
+  2. If the number I enter is higher than the answer hint says Go Higher even if the answer is lower than my guess.
+  3. New Game button does not work. 
+  4. Normal difficulty has more attempts than easy
+  5. Guess should be from 1-100 but it accepts 0 or negative numbers.
 
 **Bug Reproduction Log**
 
 Document at least 3 bugs you found. Add rows as needed.
 
-| Input | Expected Behavior | Actual Behavior | Console Output / Error |
-|-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Input Used | Expected Behavior | Actual Behavior | Console Error / Output |
+|------------|-------------------|-----------------|------------------------|
+| Secret = 50 (from Developer Debug Info), enter `80` | Guess is too high, so hint should say "📉 Go LOWER!" | Hint says "📈 Go HIGHER!" — the hints are reversed | No error thrown; the int-vs-string comparison raises a `TypeError` that is silently caught in `check_guess`, so the wrong hint just shows |
+| Secret = 50 (from Developer Debug Info), enter `30` | Guess is too low, so hint should say "📈 Go HIGHER!" | Hint says "📉 Go LOWER!" — the hints are reversed | No error thrown |
+| Win or lose a round, then click **New Game 🔁** | Game fully resets (attempts, score, history, status) and lets me play again | Page still shows "You already won / Game over. Start a new game to try again." and stops — `status` and `history` are never reset, so the game stays stuck | No error thrown |
+| Select **Easy**, note attempts; then select **Normal** | Easy should give the most attempts; Normal should give fewer | Easy shows 6 attempts but Normal shows 8 — Normal gives *more* attempts than Easy | No error thrown |
+| Enter `0` (or `-5`) as a guess and click Submit | Rejected with a message like "Enter a number between 1 and 100." | Accepted as a valid guess and scored — `parse_guess` only checks that it's an integer, never the 1–100 range | No error thrown |
 
 ---
 
