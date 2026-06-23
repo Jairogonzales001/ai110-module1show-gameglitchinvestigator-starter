@@ -9,9 +9,7 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
   (for example: "the hints were backwards").
   1. If the number I enter is lower than the answer hint says Go Lower even if the answer is higher than my guess.
   2. If the number I enter is higher than the answer hint says Go Higher even if the answer is lower than my guess.
-  3. New Game button does not work. 
-  4. Normal difficulty has more attempts than easy
-  5. Guess should be from 1-100 but it accepts 0 or negative numbers.
+  3. Guess should be from 1-100 but it accepts 0 or negative numbers.
 
 **Bug Reproduction Log**
 
